@@ -5,7 +5,7 @@ from openai import OpenAI
 from tools.task_tools import TaskTool
 
 # 配置API密钥
-KIMI_API_KEY = os.getenv("KIMI_API_KEY", "sk-aVI5HrvCBk9FPTl50s31zHMGGVbDTTTJ9AezMQUheWL2fA5U")
+KIMI_API_KEY = os.getenv("KIMI_API_KEY")
 if not KIMI_API_KEY:
     raise ValueError("请设置KIMI_API_KEY环境变量")
 
@@ -26,7 +26,7 @@ async def test_task_tool():
 
     # 测试输入 - Git恢复任务
     test_input = {
-        "description": """you should cd to path in /Users/lunahyhuang/Downloads/cc_proj/terminal-bench/tasks/fix-git
+        "description": """you should cd to path in terminal-bench/tasks/fix-git
         I just made some changes to my personal site and checked out master, but now I can't find those changes. Please help me find them and merge them into master."""
     }
 
