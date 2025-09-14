@@ -19,6 +19,9 @@ pip install -r requirements.txt
 
 ## Run
 ```bash
+setup KIMI_API_KEY
+install terminal-bench
+
 python3 main.py
 ```
 
