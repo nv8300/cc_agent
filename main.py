@@ -21,14 +21,32 @@ MODEL_CONFIG = {
 }
 
 
+def get_user_input():
+    # 第一次询问：获取代码路径
+    code_path = input("Please give the code path: ").strip()
+    while not code_path:
+        print("Code path cannot be empty.")
+        code_path = input("Please give the code path: ").strip()
+    
+    # 第二次询问：获取具体指令
+    instruction = input("Please give instruction: ").strip()
+    while not instruction:
+        print("Instruction cannot be empty.")
+        instruction = input("Please give instruction: ").strip()
+    
+    # 构建测试输入字典
+    test_input = {
+        "description": f"""you should cd to path: {code_path}
+        {instruction}"""
+    }
+    return test_input
+
+
 async def test_task_tool():
     task_tool = TaskTool()
 
     # 测试输入 - Git恢复任务
-    test_input = {
-        "description": """you should cd to path in terminal-bench/tasks/fix-git
-        I just made some changes to my personal site and checked out master, but now I can't find those changes. Please help me find them and merge them into master."""
-    }
+    test_input = get_user_input()
 
     print(f"输入: {test_input['description']}")
 
