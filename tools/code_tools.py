@@ -18,6 +18,12 @@ class GrepTool(Tool):
 🔧 Use tool: GrepTool
    Parameters: {'pattern': 'your_regex_pattern', 'include': 'file_pattern'}
 
+❌ INCORRECT FORMATS (WILL FAIL):
+- Do NOT use <functioncallbegin> or <functioncallend> tags
+- Do NOT use <function> or <parameter> tags
+- Do NOT omit the "🔧 Use tool: GrepTool" prefix
+- Do NOT use any other formatting for tool calls
+
 ## Required Parameters
 - `pattern`: Regular expression pattern to search for (e.g., "log.*Error", "function\\s+\\w+")
 - `include`: **Mandatory file pattern filter** specifying which files to search (e.g., "*.js", "*.{ts,tsx}", "*.sh", "*.py")
@@ -26,7 +32,27 @@ class GrepTool(Tool):
 - Searches file contents using regular expressions
 - Supports full regex syntax
 - Returns matching file paths sorted by modification time
-- Shows snippet of matching lines with context"""
+- Shows snippet of matching lines with context
+
+## When to Use
+- Find files containing specific patterns or code snippets
+- Search for configuration settings across multiple files
+- Locate error messages or specific functions in codebase
+
+## Usage Examples
+- Search for Git reflog commands in shell scripts:
+  🔧 Use tool: GrepTool
+     Parameters: {'pattern': 'git reflog', 'include': '*.sh'}
+
+- Find Python files with error handling:
+  🔧 Use tool: GrepTool
+     Parameters: {'pattern': 'try.*except', 'include': '*.py'}
+
+- Look for JavaScript console logs:
+  🔧 Use tool: GrepTool
+     Parameters: {'pattern': 'console\\.log', 'include': '*.js'}
+
+When you need an open-ended search requiring multiple rounds of globbing and grepping, use the Agent tool instead."""
 
     def is_read_only(self) -> bool:
         return True
@@ -294,13 +320,34 @@ class BashTool(Tool):
 🔧 Use tool: BashTool
    Parameters: {'command': 'your command here'}
 
+❌ INCORRECT FORMATS (WILL FAIL):
+- Do NOT use <functioncallbegin> or <functioncallend> tags
+- Do NOT use <function> or <parameter> tags
+- Do NOT omit the "🔧 Use tool: BashTool" prefix
+- Do NOT use any other formatting for tool calls
+
 ## Required Parameters
 - `command`: The bash command to execute (string type, required)
   - Examples: 'git reflog', 'ls -la', 'git stash list'
   - For Python commands, must use 'python3' instead of 'python'
 
 ## Optional Parameters
-- `timeout`: Command timeout in seconds (integer type, default 10 seconds)"""
+- `timeout`: Command timeout in seconds (integer type, default 10 seconds)
+  - Example: {'command': 'long-running-command', 'timeout': 30}
+
+## Usage Notes
+1. Commands must be a single string; do not split into multiple commands
+2. Pipeline commands are allowed, e.g.: 'git log | grep "commit"'
+3. Directory changes must be done in the same command: 'cd /path && git status'
+4. For your Git recovery scenario, useful commands include:
+   - 'git stash list' (check for stashed changes)
+   - 'git reflog' (view recent HEAD movements)
+   - 'git branch -a' (list all branches)
+   - 'git status' (check working directory state)
+
+## Security Restrictions
+- Some high-risk commands may be restricted from execution
+- If administrator privileges are required, confirm the necessity"""
 
     def is_read_only(self) -> bool:
         return False

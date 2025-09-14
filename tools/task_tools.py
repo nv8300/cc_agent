@@ -482,7 +482,13 @@ async def get_tools() -> List[Tool]:
 
 
 async def get_read_only_tools() -> List[Tool]:
-    return [tool for tool in await get_tools() if tool.is_read_only()]
+    all_tools = await get_tools()
+    # 明确指定哪些工具是只读的，其他的（包括BashTool）在安全模式下会被排除
+    read_only_names = [
+        "GrepTool", "FileReadTool", "GlobTool", 
+        "ThinkTool", "URLFetcherTool", "WebSearchTool"
+    ]
+    return [tool for tool in all_tools if tool.name in read_only_names]
 
 
 async def get_task_tools(safe_mode: bool) -> List[Tool]:

@@ -10,6 +10,11 @@ A comprehensive framework for building K2-powered tools and agents that can inte
 - Safe mode for read-only operations
 - Extensible tool architecture
 
+## test
+```bash
+python3 main.py```
+
+
 ## Installation
 
 ```bash
