@@ -5,7 +5,7 @@ A comprehensive framework for building K2-powered tools and agents that can inte
 ## Features
 
 - 11 tools for file operations, code analysis, web search, including GrepTool, FileReadTool, GlobTool, BashTool, FileEditTool, FileWriteTool, ThinkTool, TodoWriteTool, URLFetcherTool, NotebookEditTool, WebSearchTool.
-- AAgent-based task execution with four sub-agents: general-purpose, code-reviewer, researcher and data-scientist.
+- Agent-based task execution with 4 agents: general-purpose, code-reviewer, researcher and data-scientist.
 - Rate limiting and caching for API calls.
 - Safe mode for read-only operations.
 - Extensible tool architecture.
