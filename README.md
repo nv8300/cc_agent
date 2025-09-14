@@ -17,16 +17,17 @@ A comprehensive framework for building K2-powered tools and agents that can inte
 pip install -r requirements.txt
 ```
 
-## run
+## Run
 ```bash
 python3 main.py
 ```
 
 
-## terminal-bench test case
+## Terminal-bench Example
 
-- fix-git
+- Test case: fix-git
 - Instruction: I just made some changes to my personal site and checked out master, but now I can't find those changes. Please help me find them and merge them into master.
+- Output: 
 ```bash
 输入: you should cd to path in terminal-bench/tasks/fix-git
         I just made some changes to my personal site and checked out master, but now I can't find those changes. Please help me find them and merge them into master.
